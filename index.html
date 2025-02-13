@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine's Day</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .gradient-background {
+      background: linear-gradient(180deg, rgba(10, 10, 50, 1) 0%, rgba(40, 40, 70, 1) 50%, rgba(10, 10, 50, 1) 100%);
+    }
+
+    .bounce2 {
+      animation: bounce2 2s ease infinite;
+    }
+
+    @keyframes bounce2 {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-20px);
+      }
+      60% {
+        transform: translateY(-10px);
+      }
+    }
+  </style>
+</head>
+<body class="gradient-background text-white">
+  <div class="flex items-center justify-center h-screen">
+    <div class="flex flex-col items-center p-4">
+      <h2 id="valentineQuestion" class="text-4xl font-bold italic text-pink-400 my-4">Will you be my Valentine?</h2>
+      <p id="warningText" class="text-xl font-semibold text-pink-300">Don’t you dare say NO!</p>
+      <div class="flex gap-4 pt-5 items-center" id="responseButtons">
+        <button id="yesButton" class="bounce2 bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-6 rounded-md transition">Yes</button>
+        <button id="noButton" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-md transition">No</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="secondPart" class="hidden p-8">
+    <!-- Shared Note Area -->
+    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 mb-8">
+      <h3 class="text-2xl font-bold mb-4">Shared Note</h3>
+      <textarea id="sharedNote" class="w-full h-32 p-4 bg-gray-700 rounded-md text-white resize-none" placeholder="Write your thoughts here..."></textarea>
+    </div>
+
+    <!-- Love Calculator -->
+    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 mb-8">
+      <h3 class="text-2xl font-bold mb-4">Love Calculator</h3>
+      <form id="loveCalculatorForm" class="space-y-4">
+        <div>
+          <label for="name1" class="block text-lg">Your Name:</label>
+          <input type="text" id="name1" class="w-full p-2 bg-gray-700 rounded-md text-white" required />
+        </div>
+        <div>
+          <label for="name2" class="block text-lg">Partner's Name:</label>
+          <input type="text" id="name2" class="w-full p-2 bg-gray-700 rounded-md text-white" required />
+        </div>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-6 rounded-md transition">Calculate</button>
+      </form>
+      <p id="loveResult" class="mt-4 text-xl font-bold"></p>
+    </div>
+
+    <!-- Links Section -->
+    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6">
+      <h3 class=\"text-2xl font-bold mb-4\">Click Me</h3>
+      <ul class=\"list-disc list-inside\">
+        <li><a href=\"https://docs.google.com/forms/d/e/1FAIpQLSds8eDYsXa-C_gWbMXiHTYmh1ttqnRWu0nPkMS6StHM0bE1iQ/viewform?usp=dialog\" class=\"text-blue-400 hover:underline\">Google Form</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <script type="module">
+    import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+    const valentineQuestion = document.getElementById('valentineQuestion');
+    const responseButtons = document.getElementById('responseButtons');
+    const secondPart = document.getElementById('secondPart');
+    const loveCalculatorForm = document.getElementById('loveCalculatorForm');
+    const loveResult = document.getElementById('loveResult');
+    const sharedNote = document.getElementById('sharedNote');
+
+    let noClickCount = 0;
+    let buttonHeight = 48;
+    let buttonWidth = 80;
+    let fontSize = 20;
+
+    noButton.addEventListener('click', function() {
+      if (noClickCount < 5) {
+        noClickCount++;
+        buttonHeight += 35;
+        buttonWidth += 35;
+        fontSize += 25;
+        yesButton.style.height = `${buttonHeight}px`;
+        yesButton.style.width = `${buttonWidth}px`;
+        yesButton.style.fontSize = `${fontSize}px`;
+        if (noClickCount < 6) {
+          noButton.textContent = ["No", "Are you sure?", "Pookie please", "Don't do this to me :(", "You're breaking my heart", "I'm gonna cry..."][noClickCount];
+        }
+      }
+    });
+
+    yesButton.addEventListener('click', () => {
+      valentineQuestion.textContent = "Yayyy!! :3";
+      responseButtons.style.display = 'none';
+      confetti();
+      setTimeout(() => {
+        secondPart.classList.remove('hidden');
+      }, 2000);
+    });
+
+    loveCalculatorForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name1 = document.getElementById('name1').value.toLowerCase();
+      const name2 = document.getElementById('name2').value.toLowerCase();
+      const specialNames = ["ansh", "ahana", "pair", "akshat", "hokage", "lord yeowang", "pari"];
+      const matchMessages100 = [
+        "Destiny has spoken—you two are meant to be! 💍❤️",
+        "Soulmates detected. Wedding bells soon? 🔔💕",
+        "Perfect match! You guys are #CoupleGoals 😘🔥"
+      ];
+      const matchMessages0 = [
+        "Ouch... Cupid missed this one. 💔😅",
+        "Not a match, but there’s always pizza. 🍕",
+        "Sorry, looks like fate has other plans. 😔"
+      ];
+      if (specialNames.includes(name1) && specialNames.includes(name2)) {
+        loveResult.textContent = `100% - ${matchMessages100[Math.floor(Math.random() * matchMessages100.length)]}`;
+      } else {
+        loveResult.textContent = `0% - ${matchMessages0[Math.floor(Math.random() * matchMessages0.length)]}`;
+      }
+    });
+  </script>
+</body>
+</html>
