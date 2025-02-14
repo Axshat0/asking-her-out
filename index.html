@@ -9,11 +9,9 @@
     .gradient-background {
       background: linear-gradient(180deg, rgba(10, 10, 50, 1) 0%, rgba(40, 40, 70, 1) 50%, rgba(10, 10, 50, 1) 100%);
     }
-
     .bounce2 {
       animation: bounce2 2s ease infinite;
     }
-
     @keyframes bounce2 {
       0%, 20%, 50%, 80%, 100% {
         transform: translateY(0);
@@ -25,12 +23,47 @@
         transform: translateY(-10px);
       }
     }
+    body {
+      background: #0D1B2A;
+      color: #E0E1DD;
+      font-family: 'Poppins', sans-serif;
+    }
+    .card {
+      background: rgba(18, 29, 48, 0.9);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      overflow-y: auto;
+      padding: 40px;
+    }
+    .modal.active {
+      display: block;
+    }
+    .modal-content {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #1B263B;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    }
   </style>
 </head>
 <body class="gradient-background text-white">
   <div class="flex items-center justify-center h-screen">
     <div class="flex flex-col items-center p-4">
-      <h2 id="valentineQuestion" class="text-4xl font-bold italic text-pink-400 my-4">Will you be my Valentine?</h2>
+      <h2 id="valentineQuestion" class="text-4xl font-bold italic text-pink-400 my-4 flex items-center justify-center">Will you be my Valentine?</h2>
       <p id="warningText" class="text-xl font-semibold text-pink-300">Don’t you dare say NO!</p>
       <div class="flex gap-4 pt-5 items-center" id="responseButtons">
         <button id="yesButton" class="bounce2 bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-6 rounded-md transition">Yes</button>
@@ -40,34 +73,66 @@
   </div>
 
   <div id="secondPart" class="hidden p-8">
-    <!-- Shared Note Area -->
-    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 mb-8">
-      <h3 class="text-2xl font-bold mb-4">Shared Note</h3>
-      <textarea id="sharedNote" class="w-full h-32 p-4 bg-gray-700 rounded-md text-white resize-none" placeholder="Write your thoughts here..."></textarea>
+    <!-- Shared Note Section -->
+    <div class="card">
+      <h2 class="text-3xl font-bold mb-6">Shared Note</h2>
+      <textarea placeholder="Write something thoughtful..." class="w-full h-[50vh] p-3 bg-gray-800 rounded-md text-white resize-none">
+Yo,  
+
+Just wanted to say… you have no idea how much you mean to me. You’re in my thoughts 24/7, and honestly, all I wanna do is make you happy. So please, keep smiling—that smile of yours? It’s everything. ❤️
+        
+Hope you loved it. Can’t wait to hear what you think! 
+      </textarea>
+      <button type="submit" class="w-full py-3 px-6 bg-indigo-600 text-white font-semibold rounded-lg transition-transform transform hover:scale-105 hover:bg-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-300 mt-4">
+        Save Note
+      </button>
     </div>
 
-    <!-- Love Calculator -->
-    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 mb-8">
-      <h3 class="text-2xl font-bold mb-4">Love Calculator</h3>
-      <form id="loveCalculatorForm" class="space-y-4">
-        <div>
-          <label for="name1" class="block text-lg">Your Name:</label>
-          <input type="text" id="name1" class="w-full p-2 bg-gray-700 rounded-md text-white" required />
-        </div>
-        <div>
-          <label for="name2" class="block text-lg">Partner's Name:</label>
-          <input type="text" id="name2" class="w-full p-2 bg-gray-700 rounded-md text-white" required />
-        </div>
-        <button type="submit" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-6 rounded-md transition">Calculate</button>
+    <!-- Love Calculator Section -->
+    <div class="card">
+      <h2 class="text-3xl font-bold mb-6">Love Calculator</h2>
+      <form id="loveCalculatorForm">
+        <input type="text" id="name1" placeholder="Your Name" class="w-full mb-4 p-3 bg-gray-800 rounded-md text-white" required>
+        <input type="text" id="name2" placeholder="Partner's Name" class="w-full mb-4 p-3 bg-gray-800 rounded-md text-white" required>
+        <button type="submit" class="w-full py-3 px-6 bg-indigo-600 text-white font-semibold rounded-lg transition-transform transform hover:scale-105 hover:bg-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-300">
+          Calculate
+        </button>
       </form>
-      <p id="loveResult" class="mt-4 text-xl font-bold"></p>
+      <p id="loveResult" class="text-lg font-semibold mt-4"></p>
     </div>
 
-    <!-- Links Section -->
-    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6">
-      <h3 class=\"text-2xl font-bold mb-4\">Click Me</h3>
-      <ul class=\"list-disc list-inside\">
-        <li><a href=\"https://docs.google.com/forms/d/e/1FAIpQLSds8eDYsXa-C_gWbMXiHTYmh1ttqnRWu0nPkMS6StHM0bE1iQ/viewform?usp=dialog" class=\"text-blue-400 hover:underline\">Google Form</a></li>
+    <!-- Gallery Section -->
+    <div class="card">
+      <h2 class="text-3xl font-bold mb-6">Gallery</h2>
+      <button id="openGalleryButton" class="w-full py-3 px-6 bg-indigo-600 text-white font-semibold rounded-lg transition-transform transform hover:scale-105 hover:bg-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-300">
+        Open Gallery
+      </button>
+    </div>
+  </div>
+  
+  <!-- Modal for Gallery -->
+  <div id="galleryModal" class="modal">
+    <div class="modal-content">
+      <h2 class="text-4xl font-bold mb-6 text-center">Photo Gallery</h2>
+      <input type="file" id="imageUpload" class="mb-6 block w-full bg-gray-800 p-3 rounded-md text-white">
+      <button id="uploadButton" class="w-full py-3 px-6 bg-indigo-600 text-white font-semibold rounded-lg transition-transform transform hover:scale-105 hover:bg-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-300">
+        Upload Photo
+      </button>
+      <div id="gallery" class="grid grid-cols-2 gap-4 mt-6">
+        <!-- Images will be dynamically added here -->
+      </div>
+      <button id="closeGalleryButton" class="w-full py-3 px-6 bg-red-600 text-white font-semibold rounded-lg transition-transform transform hover:scale-105 hover:bg-red-500 focus:outline-none focus:ring-4 focus:ring-red-300 mt-6">
+        Close
+      </button>
+    </div>
+  </div>
+  <!-- Fun Links Section -->
+  <div class="max-w-4xl mx-auto p-4 sm:p-8">
+    <div class="card">
+      <h2 class="text-3xl font-bold mb-6">Fun Links</h2>
+      <ul class="list-disc list-inside space-y-2">
+        <li><a href="https://example.com" class="text-indigo-400 hover:underline">coming soon</a></li>
+        <li><a href="https://example.com" class="text-indigo-400 hover:underline">coming soon</a></li>
       </ul>
     </div>
   </div>
@@ -79,9 +144,6 @@
     const valentineQuestion = document.getElementById('valentineQuestion');
     const responseButtons = document.getElementById('responseButtons');
     const secondPart = document.getElementById('secondPart');
-    const loveCalculatorForm = document.getElementById('loveCalculatorForm');
-    const loveResult = document.getElementById('loveResult');
-    const sharedNote = document.getElementById('sharedNote');
 
     let noClickCount = 0;
     let buttonHeight = 48;
@@ -97,9 +159,7 @@
         yesButton.style.height = `${buttonHeight}px`;
         yesButton.style.width = `${buttonWidth}px`;
         yesButton.style.fontSize = `${fontSize}px`;
-        if (noClickCount < 6) {
-          noButton.textContent = ["No", "Are you sure?", "Pookie please", "Don't do this to me :(", "You're breaking my heart", "I'm gonna cry..."][noClickCount];
-        }
+        noButton.textContent = ["No", "Are you sure?", "Pookie please", "Don't do this to me :(", "You're breaking my heart", "I'm gonna cry..."][noClickCount];
       }
     });
 
@@ -112,10 +172,14 @@
       }, 2000);
     });
 
+    const loveCalculatorForm = document.getElementById('loveCalculatorForm');
+    const loveResult = document.getElementById('loveResult');
+
     loveCalculatorForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const name1 = document.getElementById('name1').value.toLowerCase();
       const name2 = document.getElementById('name2').value.toLowerCase();
+
       const specialNames = ["ansh", "ahana", "pair", "akshat", "hokage", "lord yeowang", "pari"];
       const matchMessages100 = [
         "Destiny has spoken—you two are meant to be! 💍❤️",
@@ -127,10 +191,40 @@
         "Not a match, but there’s always pizza. 🍕",
         "Sorry, looks like fate has other plans. 😔"
       ];
+
       if (specialNames.includes(name1) && specialNames.includes(name2)) {
         loveResult.textContent = `100% - ${matchMessages100[Math.floor(Math.random() * matchMessages100.length)]}`;
       } else {
         loveResult.textContent = `0% - ${matchMessages0[Math.floor(Math.random() * matchMessages0.length)]}`;
+      }
+    });
+
+    const openGalleryButton = document.getElementById('openGalleryButton');
+    openGalleryButton.addEventListener('click', () => {
+      window.open('https://in.pinterest.com/akshatsinghjadon7/idk/', '_blank');
+    });
+
+    const closeGalleryButton = document.getElementById('closeGalleryButton');
+    closeGalleryButton.addEventListener('click', () => {
+      galleryModal.classList.remove('active');
+    });
+
+    const uploadButton = document.getElementById('uploadButton');
+    const imageUpload = document.getElementById('imageUpload');
+    const gallery = document.getElementById('gallery');
+
+    uploadButton.addEventListener('click', () => {
+      const file = imageUpload.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const imgElement = document.createElement('img');
+          imgElement.src = e.target.result;
+          imgElement.classList.add('rounded-md', 'shadow-lg', 'w-full', 'h-48', 'object-cover');
+          gallery.appendChild(imgElement);
+          imageUpload.value = '';
+        };
+        reader.readAsDataURL(file);
       }
     });
   </script>
