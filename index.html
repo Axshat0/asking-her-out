@@ -35,198 +35,163 @@
       margin-bottom: 20px;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
     }
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      z-index: 1000;
-      overflow-y: auto;
-      padding: 40px;
-    }
-    .modal.active {
-      display: block;
-    }
-    .modal-content {
-      max-width: 800px;
-      margin: 0 auto;
-      background: #1B263B;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
-    }
   </style>
 </head>
 <body class="gradient-background text-white">
-  <div class="flex items-center justify-center h-screen">
+  <div id="question1" class="flex items-center justify-center h-screen">
     <div class="flex flex-col items-center p-4">
-      <h2 id="valentineQuestion" class="text-4xl font-bold italic text-pink-400 my-4 flex items-center justify-center">Will you be my Valentine?</h2>
-      <p id="warningText" class="text-xl font-semibold text-pink-300">Don’t you dare say NO!</p>
-      <div class="flex gap-4 pt-5 items-center" id="responseButtons">
-        <button id="yesButton" class="bounce2 bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-6 rounded-md transition">Yes</button>
-        <button id="noButton" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-md transition">No</button>
+      <h2 class="text-4xl font-bold italic text-pink-400 my-4">Will you forgive me for what I did?</h2>
+      <p class="text-xl font-semibold text-pink-300">I love you… and I mean that with everything I am plss say yes</p>
+
+      <div class="flex gap-4 pt-5 items-center">
+        <button id="yes1" class="bounce2 bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-6 rounded-md transition">Okay bby I forgive you</button>
+        <button id="no1" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-md transition">No I won't</button>
+
       </div>
     </div>
   </div>
 
-  <div id="secondPart" class="hidden p-8">
-    <!-- Shared Note Section -->
-    <div class="card">
-      <h2 class="text-3xl font-bold mb-6">Shared Note</h2>
-      <textarea placeholder="Write something thoughtful..." class="w-full h-[50vh] p-3 bg-gray-800 rounded-md text-white resize-none">
-Yo,  
+  <div id="question2" class="hidden flex items-center justify-center h-screen">
+    <div class="flex flex-col items-center p-4">
+      <h2 class="text-4xl font-bold italic text-pink-400 my-4">Awww you said yes! I knew you would 😭💖</h2>
+      <p class="text-xl font-semibold text-pink-300">I love you sooo much bby. Thank you, you're the best.  
+      You said yes cuz you think I'm a good boyfriend, right?</p>
 
-I don’t say “I love you,” but…
-I have a playlist that’s basically all about you, Instagram saves filled with unspoken words, and—yeah—a whole website I built just for you.
-And if that’s still not enough, just know you’re on my mind 24/7 too
-      </textarea>
-      <button type="submit" class="w-full py-3 px-6 bg-indigo-600 text-white font-semibold rounded-lg transition-transform transform hover:scale-105 hover:bg-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-300 mt-4">
-        Save Note
-      </button>
-    </div>
-
-    <!-- Love Calculator Section -->
-    <div class="card">
-      <h2 class="text-3xl font-bold mb-6">Love Calculator</h2>
-      <form id="loveCalculatorForm">
-        <input type="text" id="name1" placeholder="Your Name" class="w-full mb-4 p-3 bg-gray-800 rounded-md text-white" required>
-        <input type="text" id="name2" placeholder="Partner's Name" class="w-full mb-4 p-3 bg-gray-800 rounded-md text-white" required>
-        <button type="submit" class="w-full py-3 px-6 bg-indigo-600 text-white font-semibold rounded-lg transition-transform transform hover:scale-105 hover:bg-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-300">
-          Calculate
-        </button>
-      </form>
-      <p id="loveResult" class="text-lg font-semibold mt-4"></p>
-    </div>
-
-    <!-- Gallery Section -->
-    <div class="card">
-      <h2 class="text-3xl font-bold mb-6">Gallery</h2>
-      <button id="openGalleryButton" class="w-full py-3 px-6 bg-indigo-600 text-white font-semibold rounded-lg transition-transform transform hover:scale-105 hover:bg-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-300">
-        Open Gallery
-      </button>
-    </div>
-  </div>
-  
-  <!-- Modal for Gallery -->
-  <div id="galleryModal" class="modal">
-    <div class="modal-content">
-      <h2 class="text-4xl font-bold mb-6 text-center">Photo Gallery</h2>
-      <input type="file" id="imageUpload" class="mb-6 block w-full bg-gray-800 p-3 rounded-md text-white">
-      <button id="uploadButton" class="w-full py-3 px-6 bg-indigo-600 text-white font-semibold rounded-lg transition-transform transform hover:scale-105 hover:bg-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-300">
-        Upload Photo
-      </button>
-      <div id="gallery" class="grid grid-cols-2 gap-4 mt-6">
-        <!-- Images will be dynamically added here -->
+      <div class="flex gap-4 pt-5 items-center">
+        <button id="yes2" class="bounce2 bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-6 rounded-md transition">Yes</button>
+        <button id="no2" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-md transition">No</button>
       </div>
-      <button id="closeGalleryButton" class="w-full py-3 px-6 bg-red-600 text-white font-semibold rounded-lg transition-transform transform hover:scale-105 hover:bg-red-500 focus:outline-none focus:ring-4 focus:ring-red-300 mt-6">
-        Close
-      </button>
     </div>
   </div>
-  <!-- Fun Links Section -->
-  <div class="max-w-4xl mx-auto p-4 sm:p-8">
-    <div class="card">
-      <h2 class="text-3xl font-bold mb-6">Fun Links</h2>
-      <ul class="list-disc list-inside space-y-2">
-        <li><a href="https://example.com" class="text-indigo-400 hover:underline">coming soon</a></li>
-        <li><a href="https://example.com" class="text-indigo-400 hover:underline">coming soon</a></li>
-      </ul>
+
+  <div id="question3" class="hidden flex items-center justify-center h-screen">
+    <div class="flex flex-col items-center p-4">
+      <h2 class="text-4xl font-bold italic text-pink-400 my-4">Do you wanna go on a date with me??</h2>
+      <p class="text-xl font-semibold text-pink-300">My princess 💕👑</p>
+
+      <div class="flex gap-4 pt-5 items-center">
+        <button id="yes3" class="bounce2 bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-6 rounded-md transition">Yes</button>
+        <button id="no3" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-md transition">NO Absolutely not</button>
+
+      </div>
     </div>
   </div>
+
+  <div id="finalPage" class="hidden flex items-center justify-center h-screen">
+    <div class="flex flex-col items-center p-6 max-w-xl">
+      <h2 class="text-4xl font-bold text-pink-400 text-center mb-6">YAYYYY! 🎉🎉🎉</h2>
+      <p class="text-base sm:text-lg text-center text-white font-medium whitespace-pre-line leading-relaxed">
+        hey I know you're angry and maybe I messed up again but I just wanna say this
+
+        I love you more than words could ever explain like fr you’re everything to me
+        you make my world brighter you make it worth living and I’m so damn happy to have you in my life
+        you don’t even know how special you are
+        you’re the reason I smile without even trying you’re the reason I believe in love
+
+        you make every other girl look like nothing to me
+        you’re my type my only type my everything
+        no one even come close you make every girl out there look invisible
+        you’re not just pretty you’re beautiful in every possible way
+        my beautiful princess the one I adore the one I’d choose in every lifetime
+
+        I don’t want a world without you I need you
+        you’re not just someone I love you’re someone I need
+        you’re a part of me now I feel empty without you
+        you’re the only one who makes my heart feel alive
+        and I never wanna lose that never wanna lose you
+
+        so even if you’re angry I still love you
+        I’ll wait I’ll listen I’ll fix it
+        but please don’t forget how much I love you
+        how much I need you
+      </p>
+
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf75ANSM3FEVKWwJF6sVtC909Sm5kK2jykxesMTtLjluE2VoQ/viewform?usp=dialog" target="_blank" class="mt-6 inline-block bg-pink-500 hover:bg-pink-400 text-white font-bold py-2 px-6 rounded-lg transition">
+        Click here, my love 💗
+      </a>
+    </div>
+  </div>
+
 
   <script type="module">
     import confetti from 'https://cdn.skypack.dev/canvas-confetti';
-    const yesButton = document.getElementById('yesButton');
-    const noButton = document.getElementById('noButton');
-    const valentineQuestion = document.getElementById('valentineQuestion');
-    const responseButtons = document.getElementById('responseButtons');
-    const secondPart = document.getElementById('secondPart');
 
-    let noClickCount = 0;
-    let buttonHeight = 48;
-    let buttonWidth = 80;
-    let fontSize = 20;
+    function setupYesNo(yesBtnId, noBtnId, currentSectionId, nextSectionId) {
+      const yesBtn = document.getElementById(yesBtnId);
+      const noBtn = document.getElementById(noBtnId);
+      const current = document.getElementById(currentSectionId);
+      const next = document.getElementById(nextSectionId);
+      let noClickCount = 0;
+      let buttonHeight = 48;
+      let buttonWidth = 80;
+      let fontSize = 20;
 
-    noButton.addEventListener('click', function() {
-      if (noClickCount < 5) {
-        noClickCount++;
-        buttonHeight += 35;
-        buttonWidth += 35;
-        fontSize += 25;
-        yesButton.style.height = `${buttonHeight}px`;
-        yesButton.style.width = `${buttonWidth}px`;
-        yesButton.style.fontSize = `${fontSize}px`;
-        noButton.textContent = ["No", "Are you sure?", "Pookie please", "Don't do this to me :(", "You're breaking my heart", "I'm gonna cry..."][noClickCount];
-      }
+      noBtn.addEventListener('click', function() {
+        if (noClickCount < 5) {
+          noClickCount++;
+          buttonHeight += 35;
+          buttonWidth += 35;
+          fontSize += 25;
+          yesBtn.style.height = `${buttonHeight}px`;
+          yesBtn.style.width = `${buttonWidth}px`;
+          yesBtn.style.fontSize = `${fontSize}px`;
+          noBtn.textContent = ["No", "Are you sure?", "Pookie please", "Don't do this to me :(", "You're breaking my heart", "I'm gonna cry..."][noClickCount];
+        }
+      });
+
+      yesBtn.addEventListener('click', () => {
+        confetti();
+        current.classList.add('hidden');
+        next.classList.remove('hidden');
+      });
+    }
+
+    const yes1 = document.getElementById('yes1');
+    const no1 = document.getElementById('no1');
+    const q1 = document.getElementById('question1');
+    const q2 = document.getElementById('question2');
+
+    no1.addEventListener('click', () => {
+      // Move to a random position within the container
+      const x = Math.floor(Math.random() * 200) - 100;
+      const y = Math.floor(Math.random() * 200) - 100;
+      no1.style.position = 'relative';
+      no1.style.transform = `translate(${x}px, ${y}px)`;
     });
 
-    yesButton.addEventListener('click', () => {
-      valentineQuestion.textContent = "Yayyy!! :3";
-      responseButtons.style.display = 'none';
+    yes1.addEventListener('click', () => {
       confetti();
-      setTimeout(() => {
-        secondPart.classList.remove('hidden');
-      }, 2000);
+      q1.classList.add('hidden');
+      q2.classList.remove('hidden');
     });
 
-    const loveCalculatorForm = document.getElementById('loveCalculatorForm');
-    const loveResult = document.getElementById('loveResult');
+    const yes2b = document.getElementById('yes2');
+    const no2b = document.getElementById('no2');
+    const q3 = document.getElementById('question3');
 
-    loveCalculatorForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name1 = document.getElementById('name1').value.toLowerCase();
-      const name2 = document.getElementById('name2').value.toLowerCase();
+    let yes2CloneCreated = false;
 
-      const specialNames = ["ansh", "ahana", "pair", "akshat", "hokage", "lord yeowang", "pari"];
-      const matchMessages100 = [
-        "Destiny has spoken—you two are meant to be! 💍❤️",
-        "Soulmates detected. Wedding bells soon? 🔔💕",
-        "Perfect match! You guys are #CoupleGoals 😘🔥"
-      ];
-      const matchMessages0 = [
-        "Ouch... Cupid missed this one. 💔😅",
-        "Not a match, but there’s always pizza. 🍕",
-        "Sorry, looks like fate has other plans. 😔"
-      ];
+    no2.addEventListener('click', () => {
+      no2.classList.add('hidden');
 
-      if (specialNames.includes(name1) && specialNames.includes(name2)) {
-        loveResult.textContent = `100% - ${matchMessages100[Math.floor(Math.random() * matchMessages100.length)]}`;
-      } else {
-        loveResult.textContent = `0% - ${matchMessages0[Math.floor(Math.random() * matchMessages0.length)]}`;
+      if (!yes2CloneCreated) {
+        const yes2Clone = yes2b.cloneNode(true);
+        yes2Clone.id = 'yes2-clone';
+        yes2b.parentElement.insertBefore(yes2Clone, no2b);
+
+        [yes2b, yes2Clone].forEach(btn => {
+          btn.addEventListener('click', () => {
+            confetti();
+            q2.classList.add('hidden');
+            q3.classList.remove('hidden');
+          });
+        });
+
+        yes2CloneCreated = true;
       }
     });
 
-    const openGalleryButton = document.getElementById('openGalleryButton');
-    openGalleryButton.addEventListener('click', () => {
-      window.open('https://in.pinterest.com/akshatsinghjadon7/idk/', '_blank');
-    });
-
-    const closeGalleryButton = document.getElementById('closeGalleryButton');
-    closeGalleryButton.addEventListener('click', () => {
-      galleryModal.classList.remove('active');
-    });
-
-    const uploadButton = document.getElementById('uploadButton');
-    const imageUpload = document.getElementById('imageUpload');
-    const gallery = document.getElementById('gallery');
-
-    uploadButton.addEventListener('click', () => {
-      const file = imageUpload.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const imgElement = document.createElement('img');
-          imgElement.src = e.target.result;
-          imgElement.classList.add('rounded-md', 'shadow-lg', 'w-full', 'h-48', 'object-cover');
-          gallery.appendChild(imgElement);
-          imageUpload.value = '';
-        };
-        reader.readAsDataURL(file);
-      }
-    });
+    setupYesNo('yes3', 'no3', 'question3', 'finalPage');
   </script>
 </body>
 </html>
